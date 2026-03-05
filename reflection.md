@@ -5,8 +5,12 @@ Answer each question in 3 to 5 sentences. Be specific and honest about what actu
 ## 1. What was broken when you started?
 
 - What did the game look like the first time you ran it?
+The game had 3 levels, Easy (1-20), Medium(1-100) and Hard(1-50), It had Developer Debug Info to check actual number to expected output as well. Each level had different number of attempts. 
 - List at least two concrete bugs you noticed at the start  
-  (for example: "the secret number kept changing" or "the hints were backwards").
+Bug1: Lucky number = 32, but when 31 was sent as input it asked for number lower , similarly for 35 it said to go higher.
+Bug2: It takes any number as input although there is a specified range. Ex: It took 105 as input.
+Bug 3: Expected number in difficulty Easy is 1-20 but secret number assigned is 42.
+  
 
 ---
 
