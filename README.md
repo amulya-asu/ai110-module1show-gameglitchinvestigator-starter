@@ -25,14 +25,41 @@ It wrote the code, ran away, and now the game is unplayable.
 
 ## 📝 Document Your Experience
 
-- [ ] Describe the game's purpose.
+- [ ] This is a guessing game with numbers, which is built using python, and hosted in streamlit.Player tries to guess a secret number within a difficulty-determined range (Easy: 1–20, Normal: 1–100, Hard: 1–500) before running out of attempts. Correct guesses earn points; wrong guesses cost points.
 - [ ] Detail which bugs you found.
+Here is a clean, copy‑ready **Markdown** version you can paste directly into your README. It keeps your structure but formats it professionally and consistently.
+
+---
+
+## 🐞 Bugs Found (5 Total)
+
+| # | Bug | Location |
+|---|-----|----------|
+| 1 | Reversed hints — “Too High” showed **“Go HIGHER!”** and “Too Low” showed **“Go LOWER!”** | `check_guess` in `app.py` |
+| 2 | Wrong guesses rewarded — `update_score` added **+5 points** on even-numbered wrong guesses instead of always subtracting | `update_score` in `app.py` |
+| 3 | Attempts started at 1 — `st.session_state.attempts` initialized to **1 instead of 0**, skewing attempt count | `app.py:34` |
+| 4 | New game ignored difficulty — “New Game” always used `randint(1, 100)` regardless of selected difficulty | New game handler in `app.py` |
+| 5 | Hardcoded range in info message — always displayed **“Guess a number between 1 and 100”** even on Easy/Hard | Info message in `app.py` |
+
+---
 - [ ] Explain what fixes you applied.
+## Fixes Applied
+
+- Refactored all four logic functions (`get_range_for_difficulty`, `parse_guess`, `check_guess`, `update_score`) from `app.py` into `logic_utils.py`, replacing `NotImplementedError` stubs.  
+- Corrected hint logic in `check_guess`:  
+  - `guess > secret` → **“Go LOWER!”**  
+  - `guess < secret` → **“Go HIGHER!”**  
+- Corrected scoring in `update_score`: wrong guesses now **always deduct 5 points**.  
+- Fixed attempt counter: initialized to **0** instead of 1.  
+- Fixed new‑game behavior: now uses `random.randint(low, high)` based on selected difficulty.  
+- Fixed info message: dynamically displays **“Guess a number between {low} and {high}.”**  
+- Updated tests to assert full tuple returns and added edge‑case coverage.
+
+
+
 
 ## 📸 Demo
-
-- [ ] [Insert a screenshot of your fixed, winning game here]
-
-## 🚀 Stretch Features
-
-- [ ] [If you choose to complete Challenge 4, insert a screenshot of your Enhanced Game UI here]
+The following image showcase 3 different outputs tested as well.
+- ![alt text](image.png)
+![alt text](image-1.png)
+![alt text](image-2.png)

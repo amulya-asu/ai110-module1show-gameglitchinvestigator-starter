@@ -1,8 +1,9 @@
 import sys, os
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
-
+# Worked on this together with Claude to correctly import the library.
 from logic_utils import check_guess
 
+#We also made pytest work and debug using Claude Code
 def test_winning_guess():
     # If the secret is 50 and guess is 50, it should be a win
     result = check_guess(50, 50)
